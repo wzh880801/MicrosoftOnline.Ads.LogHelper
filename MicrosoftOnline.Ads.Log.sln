@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicrosoftOnline.Ads.Log", "source\MicrosoftOnline.Ads.Log.csproj", "{C07BADAC-62D4-4C4C-9B4E-58EA796D3933}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{2720A2B3-4D8B-4EF6-AAE7-48CA680C9BCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{9F0B08DC-4006-4E85-AAE7-299050AA232D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogDemo", "example\LogDemo\LogDemo.csproj", "{23C86F7B-396C-427A-BECB-F415CDE48507}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C07BADAC-62D4-4C4C-9B4E-58EA796D3933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C07BADAC-62D4-4C4C-9B4E-58EA796D3933}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C07BADAC-62D4-4C4C-9B4E-58EA796D3933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C07BADAC-62D4-4C4C-9B4E-58EA796D3933}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23C86F7B-396C-427A-BECB-F415CDE48507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23C86F7B-396C-427A-BECB-F415CDE48507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23C86F7B-396C-427A-BECB-F415CDE48507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23C86F7B-396C-427A-BECB-F415CDE48507}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C07BADAC-62D4-4C4C-9B4E-58EA796D3933} = {2720A2B3-4D8B-4EF6-AAE7-48CA680C9BCD}
+		{23C86F7B-396C-427A-BECB-F415CDE48507} = {9F0B08DC-4006-4E85-AAE7-299050AA232D}
+	EndGlobalSection
+EndGlobal
