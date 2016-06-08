@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace MicrosoftOnline.Ads.LogAssistant
 {
+    [System.Serializable]
     public class LogEventArgs : EventArgs
     {
         public LogEventArgs(DateTime datetime, LogLevel level,
@@ -29,6 +31,8 @@ namespace MicrosoftOnline.Ads.LogAssistant
         }
 
         private string _sensitiveString = "******";
+
+        [JsonProperty("sensitiveString", Order = 9)]
         public string SensitiveString
         {
             get { return _sensitiveString; }
@@ -39,14 +43,31 @@ namespace MicrosoftOnline.Ads.LogAssistant
             }
         }
 
+        [JsonProperty("logDateTime", Order = 1)]
         public DateTime LogDateTime { get; private set; }
+
+        [JsonProperty("level", Order = 2)]
         public LogLevel Level { get; private set; }
+
+        [JsonProperty("category", Order = 3)]
         public LogCategoryType CategoryType { get; private set; }
+
+        [JsonProperty("entry", Order = 4)]
         public string WayPoint { get; private set; }
+
+        [JsonProperty("message", Order = 5)]
         public string Message { get; private set; }
+
+        [JsonProperty("parameters", Order = 6)]
         public object Parameters { get; private set; }
+
+        [JsonProperty("exception", Order = 7)]
         public Exception Exception { get; private set; }
+
+        [JsonProperty("trackingId", Order = 0)]
         public string TrackingId { get; private set; }
+
+        [JsonProperty("sensitiveProperties", Order = 8)]
         public string[] SensitiveProperties { get; private set; }
 
         public override string ToString()
@@ -80,6 +101,11 @@ namespace MicrosoftOnline.Ads.LogAssistant
             }
 
             return strBuilder.ToString();
+        }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
         }
 
         private Dictionary<string, int> cache = new Dictionary<string, int>();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MicrosoftOnline.Ads.LogAssistant;
+using System.Net;
 
 namespace LogDemo
 {
@@ -18,12 +19,16 @@ namespace LogDemo
             }
             catch (Exception ex)
             {
-                LogHelper.Error(LogCategoryType.Exception, "Main", ex.Message, new
+                LogHelper.ErrorToJson(LogCategoryType.Exception, "Main", ex.Message, new
                 {
                     Person = new Person
                     {
                         Age = 20,
                         Name = "SuperCody"
+                    },
+                    Para = new
+                    {
+                        Url = "http://cn.bing.com"
                     }
                 }, ex);
             }

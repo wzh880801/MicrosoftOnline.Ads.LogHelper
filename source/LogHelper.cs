@@ -119,5 +119,110 @@ namespace MicrosoftOnline.Ads.LogAssistant
                 }
             }
         }
+
+        public static void InfoToJson(LogCategoryType categoryType,
+            string wayPoint,
+            string message,
+            object parameters = null,
+            Exception ex = null,
+            string trackingId = null,
+            string[] sensitiveProperties = null,
+            string sensitiveReplacer = "******")
+        {
+            LogToJson(LogLevel.Info, categoryType, wayPoint, message, parameters, ex, trackingId, sensitiveProperties, sensitiveReplacer);
+        }
+
+        public static void WarnToJson(LogCategoryType categoryType,
+            string wayPoint,
+            string message,
+            object parameters = null,
+            Exception ex = null,
+            string trackingId = null,
+            string[] sensitiveProperties = null,
+            string sensitiveReplacer = "******")
+        {
+            LogToJson(LogLevel.Warn, categoryType, wayPoint, message, parameters, ex, trackingId, sensitiveProperties, sensitiveReplacer);
+        }
+
+        public static void ErrorToJson(LogCategoryType categoryType,
+            string wayPoint,
+            string message,
+            object parameters = null,
+            Exception ex = null,
+            string trackingId = null,
+            string[] sensitiveProperties = null,
+            string sensitiveReplacer = "******")
+        {
+            LogToJson(LogLevel.Error, categoryType, wayPoint, message, parameters, ex, trackingId, sensitiveProperties, sensitiveReplacer);
+        }
+
+        public static void LogToJson(LogLevel level,
+            LogCategoryType categoryType,
+            string wayPoint,
+            string message,
+            object parameters = null,
+            Exception ex = null,
+            string trackingId = null,
+            string[] sensitiveProperties = null,
+            string sensitiveReplacer = "******")
+        {
+            var logArgs = new LogEventArgs(DateTime.UtcNow.AddHours(8), level, categoryType, wayPoint, message, parameters, ex, trackingId, sensitiveProperties)
+            {
+                SensitiveString = sensitiveReplacer ?? "******"
+            };
+
+            lock (lockObj)
+            {
+                if (LogHandler != null)
+                {
+                    LogHandler(null, logArgs);
+                }
+                else
+                {
+                    try
+                    {
+                        var _path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+
+                        if (!Directory.Exists(_path))
+                            Directory.CreateDirectory(_path);
+                        var _log = Path.Combine(_path, string.Format("Log_{0:yyyy-MM-dd}.txt", DateTime.UtcNow.AddHours(8)));
+
+                        if (File.Exists(_log))
+                            File.AppendAllText(_log, ",\r\n" + logArgs.ToJson());
+                        else
+                            File.AppendAllText(_log, logArgs.ToJson());
+                    }
+                    catch (Exception) { }
+                }
+            }
+        }
+
+        public static void LogToJson(LogEventArgs e)
+        {
+            lock (lockObj)
+            {
+                if (LogHandler != null)
+                {
+                    LogHandler(null, e);
+                }
+                else
+                {
+                    try
+                    {
+                        var _path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+
+                        if (!Directory.Exists(_path))
+                            Directory.CreateDirectory(_path);
+                        var _log = Path.Combine(_path, string.Format("Log_{0:yyyy-MM-dd}.txt", DateTime.UtcNow.AddHours(8)));
+
+                        if (File.Exists(_log))
+                            File.AppendAllText(_log, ",\r\n" + e.ToJson());
+                        else
+                            File.AppendAllText(_log, e.ToJson());
+                    }
+                    catch (Exception) { }
+                }
+            }
+        }
     }
 }
