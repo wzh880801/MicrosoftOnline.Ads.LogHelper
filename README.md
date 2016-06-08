@@ -23,12 +23,27 @@ namespace LogDemo
             }
             catch (Exception ex)
             {
+				//common way
                 LogHelper.Error(LogCategoryType.Exception, "Main", ex.Message, new
                 {
                     Person = new Person
                     {
                         Age = 20,
                         Name = "SuperCody"
+                    }
+                }, ex);
+
+				//json
+				LogHelper.ErrorToJson(LogCategoryType.Exception, "Main", ex.Message, new
+                {
+                    Person = new Person
+                    {
+                        Age = 20,
+                        Name = "SuperCody"
+                    },
+                    Para = new
+                    {
+                        Url = "http://cn.bing.com"
                     }
                 }, ex);
             }
