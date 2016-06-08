@@ -45,6 +45,7 @@ namespace LogDemo
 ```
 
 #Log caught
+##Common
 ```C#
 {
 	2016-04-27 14:24:58.594	Exception	[Error - Main]	Message = Attempted to divide by zero.
@@ -66,6 +67,46 @@ namespace LogDemo
 		Source[System.String] = LogDemo, 
 		HResult[System.Int32] = -2147352558 
 	}
+}
+```
+###Json
+```js
+{
+  "trackingId": "5f1ab81f-1a27-4e16-abc7-ba1f2822f275", 
+  "logDateTime": "2016-06-08T19:27:54.4434924Z", 
+  "level": 2, 
+  "category": 6, 
+  "entry": "Main", 
+  "message": "Attempted to divide by zero.", 
+  "parameters": {
+    "Person": {
+      "Age": 20, 
+      "Name": "SuperCody"
+    }, 
+    "Para": {
+      "Url": "http://cn.bing.com"
+    }
+  }, 
+  "exception": {
+    "ClassName": "System.DivideByZeroException", 
+    "Message": "Attempted to divide by zero.", 
+    "Data": null, 
+    "InnerException": null, 
+    "HelpURL": null, 
+    "StackTraceString": "   at LogDemo.Program.Main(String[] args) in D:\Git\MicrosoftOnline.Ads.LogHelper\example\LogDemo\Program.cs:line 18", 
+    "RemoteStackTraceString": null, 
+    "RemoteStackIndex": 0, 
+    "ExceptionMethod": "8
+Main
+LogDemo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+LogDemo.Program
+Void Main(System.String[])", 
+    "HResult": -2147352558, 
+    "Source": "LogDemo", 
+    "WatsonBuckets": null
+  }, 
+  "sensitiveProperties": null, 
+  "sensitiveString": "******"
 }
 ```
 
