@@ -1,3 +1,6 @@
 bin  
 *.suo  
 obj
+/.vs/MicrosoftOnline.Ads.Log/v14
+/example/LogDemo/bin/Debug
+/source/bin/Debug
